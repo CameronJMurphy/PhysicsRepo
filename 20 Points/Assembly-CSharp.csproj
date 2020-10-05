@@ -72,6 +72,8 @@
     <Compile Include="Assets\SelectionManager.cs" />
     <Compile Include="Assets\SpeedBoost.cs" />
     <Compile Include="Assets\Target.cs" />
+    <Compile Include="Assets\UICon.cs" />
+    <Compile Include="Assets\UnFlipCar.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
@@ -619,31 +621,31 @@
       <HintPath>E:/Other Applications/UnityVersions/2019.4.1f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>E:/School/AIE New/Physics/20 Points/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/School/AIE New/Physics/PhysicsRepo/20 Points/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
