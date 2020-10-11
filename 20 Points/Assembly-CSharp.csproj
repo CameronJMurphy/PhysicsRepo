@@ -63,17 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CarController.cs" />
-    <Compile Include="Assets\GameCon.cs" />
-    <Compile Include="Assets\MoveToCar.cs" />
-    <Compile Include="Assets\Ragdoll\Player.cs" />
-    <Compile Include="Assets\Ragdoll\Ragdoll.cs" />
-    <Compile Include="Assets\Ragdoll\RagdollTrigger.cs" />
-    <Compile Include="Assets\SelectionManager.cs" />
-    <Compile Include="Assets\SpeedBoost.cs" />
-    <Compile Include="Assets\Target.cs" />
-    <Compile Include="Assets\UICon.cs" />
-    <Compile Include="Assets\UnFlipCar.cs" />
+    <Compile Include="Assets\Scripts\CarController.cs" />
+    <Compile Include="Assets\Scripts\GameCon.cs" />
+    <Compile Include="Assets\Scripts\MoveToCar.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Ragdoll.cs" />
+    <Compile Include="Assets\Scripts\RagdollTrigger.cs" />
+    <Compile Include="Assets\Scripts\SelectionManager.cs" />
+    <Compile Include="Assets\Scripts\SpeedBoost.cs" />
+    <Compile Include="Assets\Scripts\Target.cs" />
+    <Compile Include="Assets\Scripts\UICon.cs" />
+    <Compile Include="Assets\Scripts\UnFlipCar.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
