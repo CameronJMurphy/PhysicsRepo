@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnFlipCar : MonoBehaviour
 {
-
+    public float height;
     // Update is called once per frame
     void Update()
 
@@ -13,7 +13,7 @@ public class UnFlipCar : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
 			//Lift them into the air
-			Vector3 inAir = new Vector3(gameObject.transform.position.x, 1.649f, gameObject.transform.position.z);
+			Vector3 inAir = new Vector3(gameObject.transform.position.x, height, gameObject.transform.position.z);
 			gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, inAir, 0.1f);
 
 			//flip it around
