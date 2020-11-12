@@ -37,6 +37,6 @@ protected:
 
 	float elasticity;
 
-	float linearDrag = 0.3f;
-	float angularDrag = 0.3f;
+	float linearDrag = 2.f;
+	float angularDrag = 0.9f;
 };

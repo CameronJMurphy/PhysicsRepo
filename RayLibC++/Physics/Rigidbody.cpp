@@ -18,11 +18,10 @@ Rigidbody::~Rigidbody()
 void Rigidbody::FixedUpdate(const glm::vec2& gravity, float fixedTimeStep)
 {
 	//Gravity
-
 	ApplyForce((gravity * mass) * fixedTimeStep);
 
 	velocity = velocity - (velocity * (linearDrag * fixedTimeStep));
-	angularVelocity -= angularVelocity * angularDrag * fixedTimeStep;
+	angularVelocity -=  angularVelocity * angularDrag * fixedTimeStep;
 
 
 	if (glm::length(velocity) < 0.1f)
@@ -34,7 +33,6 @@ void Rigidbody::FixedUpdate(const glm::vec2& gravity, float fixedTimeStep)
 		angularVelocity = 0;
 	}
 	//applying velocity to position
-	//position = Vector2Add(position, Vector2Scale(velocity, fixedTimeStep));
 	position = position + (velocity * fixedTimeStep);
 }
 
@@ -56,16 +54,8 @@ void Rigidbody::ApplyForceToActor(Rigidbody* actor2, glm::vec2 force)
 
 void Rigidbody::ResolveCollision(Rigidbody* other)
 {
-	//Vector2 normal = Vector2Normalize(Vector2Subtract(other->GetPosition() , position));
-	//Vector2  relativeVel = Vector2Subtract(other->GetVelocity(), velocity);
-	////Elasticity
-	//float e = (elasticity + other->GetElasticity()) * 0.5f;
-	//float j = Vector2DotProduct(Vector2Scale( Vector2Scale(relativeVel, (1+e)*-1, normal), -1)
-	//		/ Vector2DotProduct(normal, Vector2Scale(normal, ((1 / mass) + (1 / other->GetMass()))));
 
-	//Vector2 force = Vector2Scale(normal, j);
-
-	glm::vec2 normal = glm::normalize((other->GetPosition() - position));
+	glm::vec2 normal = glm::normalize(other->GetPosition() - position);
 	glm::vec2 relativeVel = other->GetVelocity() - velocity;
 	//Elasticity
 	float e = (elasticity + other->GetElasticity()) * 0.5f;
@@ -74,8 +64,7 @@ void Rigidbody::ResolveCollision(Rigidbody* other)
 
 	glm::vec2 force = normal * j;
 
-	//ApplyForceToActor(other, Vector2Scale(force, 1));
-	ApplyForceToActor(other, force * 1.f);
+	ApplyForceToActor(other, force * -1.f);
 }
 
 void Rigidbody::SetPosition(glm::vec2 pos)

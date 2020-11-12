@@ -4,8 +4,8 @@
 #include <iostream>
 #include "PhysicsApplication.h"
 
-int main()
-{
+
+int main(){
     // Initialization
 //--------------------------------------------------------------------------------------
     int screenWidth = 800;
