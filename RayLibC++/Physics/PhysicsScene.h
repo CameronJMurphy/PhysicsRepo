@@ -4,6 +4,8 @@
 #include <functional>
 #include <raymath.h>
 #include <glm/glm.hpp>
+#include "Sphere.h"
+#include "Plane.h"
 
 class PhysicsObject;
 
@@ -42,8 +44,8 @@ public:
 	{
 		return gravity;
 	}
-
-	
+	bool SomethingIsMoving();
+	static void SphereInteraction(Sphere* sphere1, Sphere* sphere2);
 
 protected:
 	glm::vec2 gravity;

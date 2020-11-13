@@ -15,7 +15,7 @@ public:
 
 	void SetPosition(glm::vec2 pos);
 	glm::vec2 GetPosition() { return position; } ;
-
+	virtual void ResetPosition() override;
 
 	void ResolveCollision(Rigidbody* other);
 
@@ -28,15 +28,25 @@ public:
 	float GetElasticity() { return elasticity; }
 
 	glm::vec2 GetVelocity() { return velocity; }
+	void SetVelocity(glm::vec2 v) { velocity = v; }
+
+	void SetDeleteOnCollision(bool answer) { deleteOnCollision = answer; }
+	bool DeleteOnCollision() { return deleteOnCollision; }
+	void SetResetOnCollision(bool answer) { resetOnCollision = answer; }
+	bool ResetOnCollision() { return resetOnCollision; }
 
 protected:
 	float mass;
 	glm::vec2 position;
+	glm::vec2 startPos;
 	glm::vec2 velocity;
 	float angularVelocity;
 
 	float elasticity;
 
-	float linearDrag = 2.f;
+	float linearDrag = 3.f;
 	float angularDrag = 0.9f;
+
+	bool deleteOnCollision = false;
+	bool resetOnCollision = false;
 };

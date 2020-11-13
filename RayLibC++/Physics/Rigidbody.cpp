@@ -8,6 +8,7 @@ Rigidbody::Rigidbody(ShapeType shapeID, glm::vec2 pos, glm::vec2 vel, float rota
 	,mass{m}
 {
 	elasticity = 1;
+	startPos = position;
 }
 Rigidbody::~Rigidbody()
 {
@@ -70,4 +71,9 @@ void Rigidbody::ResolveCollision(Rigidbody* other)
 void Rigidbody::SetPosition(glm::vec2 pos)
 {
 	position = pos;
+}
+
+void Rigidbody::ResetPosition()
+{
+	SetPosition(startPos);
 }

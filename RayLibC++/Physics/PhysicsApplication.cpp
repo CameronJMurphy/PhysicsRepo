@@ -34,7 +34,7 @@ PhysicsApplication::~PhysicsApplication()
 void PhysicsApplication::Update(float deltaTime)
 {
 	scene->Update(deltaTime);
-	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !scene->SomethingIsMoving())
 	{
 		cue->HitBall();
 	}

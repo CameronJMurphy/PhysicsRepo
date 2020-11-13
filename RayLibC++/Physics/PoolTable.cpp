@@ -9,6 +9,7 @@ PoolTable::PoolTable(PhysicsScene* ps) : scene{ ps }
 	//instaniate white ball
 	whiteBall = new Sphere(whitePos, glm::vec2{ 0,0 }, 10.f, ballRadius, Color{ 255,255,255,230 });
 	scene->AddActor(whiteBall);
+	whiteBall->SetResetOnCollision(true);
 	
 
 	//instaniate walls
@@ -42,6 +43,7 @@ PoolTable::PoolTable(PhysicsScene* ps) : scene{ ps }
 	holes.push_back(hole6);
 	for (auto h : holes)
 	{
+		h->SetDeleteOnCollision(true);
 		scene->AddActor(h);
 	}
 	
