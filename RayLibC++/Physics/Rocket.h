@@ -2,6 +2,7 @@
 #include "Rigidbody.h"
 #include <raylib.h>
 #include "PhysicsScene.h"
+#include "Sphere.h"
 
 class Rocket : public Rigidbody
 {

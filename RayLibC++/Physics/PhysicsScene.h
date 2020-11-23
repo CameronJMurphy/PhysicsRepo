@@ -2,10 +2,11 @@
 #include <vector>
 #include <raylib.h>
 #include <functional>
-#include <raymath.h>
 #include <glm/glm.hpp>
 #include "Sphere.h"
 #include "Plane.h"
+#include "PhysicsObject.h"
+#include <iostream>
 
 class PhysicsObject;
 

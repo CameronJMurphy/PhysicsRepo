@@ -1,6 +1,5 @@
 #include "PhysicsScene.h"
-#include "PhysicsObject.h"
-#include <iostream>
+
 
 
 PhysicsScene::PhysicsScene(glm::vec2 gr = glm::vec2{ 0,0 }, float t = 0.01f) : timeStep{ t }, gravity{ gr }
@@ -19,7 +18,6 @@ PhysicsScene::~PhysicsScene()
 void PhysicsScene::AddActor(PhysicsObject* actor)
 {
 	pendingAdds.push_back(actor);
-	//actors.push_back(actor);
 }
 void PhysicsScene::RemoveActor(PhysicsObject* actor)
 {
@@ -28,18 +26,17 @@ void PhysicsScene::RemoveActor(PhysicsObject* actor)
 
 void PhysicsScene::ProcessPendingRemovals()
 {
+	//iterate through pending removals
 	auto it = actors.end();
 	for (auto a : pendingRemovals)
 	{
-		auto i = std::remove(actors.begin(), actors.end(), a);
+		auto i = std::remove(actors.begin(), actors.end(), a); //remove from actors
 		if (i != actors.end())
 		{
 			it = i;
 		}
 		
 	}
-	/*actors.erase(it, actors.end());
-	pendingRemovals.clear();*/
 }
 void PhysicsScene::Update(float deltaTime)
 {
@@ -90,16 +87,18 @@ static fn collisionFunctionArray[] = {
 void PhysicsScene::CheckForCollision()
 {
 	int actorCount = actors.size();
-
+	//go through actors
 	for (int outer = 0; outer < actorCount - 1; outer++)
 	{
 		for (int inner = outer + 1; inner < actorCount; inner++)
 		{
 			PhysicsObject* object1 = actors[outer];
 			PhysicsObject* object2 = actors[inner];
+			//Get shapes of the objects
 			int shapeID1 = (int)object1->getShapeID();
 			int shapeID2 = (int)object2->getShapeID();
 
+			//determine collision type
 			int functionId = (shapeID1 * (int)ShapeType::COUNT) + shapeID2;
 			fn collisionFunctionPtr = collisionFunctionArray[functionId];
 
@@ -131,6 +130,7 @@ bool PhysicsScene::Plane2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 }
 bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 {
+	//cast physics objects as the respective shapes
 	Sphere* sphere = dynamic_cast<Sphere*>(obj1);
 	Plane* plane = dynamic_cast<Plane*>(obj2);
 
@@ -144,7 +144,7 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 			collisionNormal *= -1; 
 			sphereToPlane *= -1;
 		}
-
+		//how far into the plane is the sphere
 		float intersection = sphere->GetRadius() - sphereToPlane;
 		if (intersection > 0)
 		{
@@ -155,11 +155,11 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 				planeNormal *= -1;
 			}
 
-			
+			//apply force to sphere
 			glm::vec2 forceVector = planeNormal * (-1 * sphere->GetMass() * (glm::dot(planeNormal, sphere->GetVelocity())));
 
 			sphere->ApplyForce(forceVector * 2.f);
-			
+			//bring sphere outta the wall
 			sphere->SetPosition(sphere->GetPosition() + (collisionNormal * (intersection * 1.f)));
 			
 			return true;
@@ -170,24 +170,29 @@ bool PhysicsScene::Sphere2Plane(PhysicsObject* obj1, PhysicsObject* obj2)
 
 bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 {
+	//cast to spheres
 	Sphere* sphere1 = dynamic_cast<Sphere*>(obj1);
 	Sphere* sphere2 = dynamic_cast<Sphere*>(obj2);
 
 	if (sphere1 != nullptr && sphere2 != nullptr)
 	{
 		glm::vec2 delta = sphere2->GetPosition() - sphere1->GetPosition();
+		//distance between sphere's pos
 		float distance = glm::distance(sphere1->GetPosition(), sphere2->GetPosition());
+		//how far are the spheres intersecting
 		float intersection = sphere1->GetRadius() + sphere2->GetRadius() - distance;
 
 
 		if (intersection > 0)
 		{
-			
+			//resolve collision
 			sphere1->ResolveCollision(sphere2);
 			glm::vec2 collisionNormal = glm::normalize(delta);
 			glm::vec2 seperationVector = collisionNormal * (intersection * 0.5f);
+			//both spheres move half the overlap in there respective directions 
 			sphere1->SetPosition(sphere1->GetPosition() - seperationVector);
 			sphere2->SetPosition(sphere2->GetPosition() + seperationVector);
+			//update pool table stuff
 			SphereInteraction(sphere1, sphere2);
 			return true;			
 		}
@@ -197,7 +202,8 @@ bool PhysicsScene::Sphere2Sphere(PhysicsObject* obj1, PhysicsObject* obj2)
 
 void PhysicsScene::SphereInteraction(Sphere* sphere1, Sphere* sphere2)
 {
-	if (sphere1->ResetOnCollision() && sphere2-> DeleteOnCollision())
+	//if a white ball hits a hole
+	if (sphere1->ResetOnCollision() && sphere2-> DeleteOnCollision()) 
 	{
 		sphere1->ResetPosition();
 		sphere1->SetVelocity(glm::vec2{ 0,0 });
@@ -228,7 +234,9 @@ bool PhysicsScene::SomethingIsMoving()
 	{
 		for (auto a : actors)
 		{
+			//cast current actor to sphere
 			Sphere* sphere = dynamic_cast<Sphere*>(a);
+			// it is a sphere and moving
 			if (sphere != nullptr && glm::length(sphere->GetVelocity()) > 20.f) //20 seems to be a point where things still move but its so tiny it doesn't matter
 			{
 				return true;

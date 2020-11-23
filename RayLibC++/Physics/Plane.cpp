@@ -16,13 +16,14 @@ Plane::~Plane()
 
 }
 
-void Plane::Draw() {
+void Plane::Draw() 
+{
 
 	glm::vec2 centerPoint = normal * distanceFromOrigin;
 
 	glm::vec2 parallel{ normal.y,normal.x };
-	Color colour{ 255,255,255,255 };
-
+	Color colour{ 255,255,255,0 };
+	//define start and end pos
 	glm::vec2 start = centerPoint + (parallel * 300.f);
 	glm::vec2 end = centerPoint - (parallel * 300.f);
 

@@ -5,6 +5,7 @@
 #include "Sphere.h"
 #include "Plane.h"
 
+
 class PoolTable
 {
 protected:
@@ -15,10 +16,12 @@ protected:
 	glm::vec2 whitePos = glm::vec2{ 150,220 };
 	PhysicsScene* const scene;
 	float ballRadius = 10.f;
+	Texture2D texture = LoadTexture("images/PoolTable.png");
 public:
 	PoolTable(PhysicsScene* ps);
+	~PoolTable();
 	void PositionBalls();
 	Rigidbody* GetWhiteBall() { return whiteBall; }
-	void HitHole(Rigidbody* object);
+	Texture2D GetTexture() { return texture; }
 };
 

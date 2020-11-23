@@ -20,7 +20,7 @@ public:
 	void ResolveCollision(Rigidbody* other);
 
 	const float& GetLinearDrag()const { return linearDrag; }
-	const float& GetAngularDrag()const { return angularDrag; }
+	//const float& GetAngularDrag()const { return angularDrag; }
 
 	const float& GetMass()const { return mass; }
 
@@ -40,12 +40,12 @@ protected:
 	glm::vec2 position;
 	glm::vec2 startPos;
 	glm::vec2 velocity;
-	float angularVelocity;
+	//float angularVelocity;
 
 	float elasticity;
 
 	float linearDrag = 3.f;
-	float angularDrag = 0.9f;
+	//float angularDrag = 0.9f;
 
 	bool deleteOnCollision = false;
 	bool resetOnCollision = false;

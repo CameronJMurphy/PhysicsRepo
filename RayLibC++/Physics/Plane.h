@@ -2,7 +2,6 @@
 #include "PhysicsObject.h"
 #include <glm/glm.hpp>
 #include <raylib.h>
-#include <raymath.h>
 
 class Plane : public PhysicsObject
 {

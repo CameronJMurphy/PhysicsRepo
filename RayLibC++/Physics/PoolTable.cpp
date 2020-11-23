@@ -4,14 +4,17 @@
 PoolTable::PoolTable(PhysicsScene* ps) : scene{ ps }
 
 {
+	//set up positions
 	PositionBalls();
-
+	//stretch pool table image to screen size
+	texture.width = 800;
+	texture.height = 450;
 	//instaniate white ball
 	whiteBall = new Sphere(whitePos, glm::vec2{ 0,0 }, 10.f, ballRadius, Color{ 255,255,255,230 });
 	scene->AddActor(whiteBall);
 	whiteBall->SetResetOnCollision(true);
 	
-
+	unsigned char alpha = 0;
 	//instaniate walls
 	auto wall1 = new Plane(glm::vec2{ 0,1 }, 50);
 	auto wall2 = new Plane(glm::vec2{ 0,-1 }, -400);
@@ -25,14 +28,15 @@ PoolTable::PoolTable(PhysicsScene* ps) : scene{ ps }
 	{
 		scene->AddActor(walls[i]);
 	}
-	float holeRadius = 30.f;
+	float holeRadius = 20.f;
+	
 	//instaniate holes
-	auto hole1 = new Sphere(glm::vec2{50,50}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
-	auto hole2 = new Sphere(glm::vec2{ 350,50 }, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
-	auto hole3 = new Sphere(glm::vec2{700,50}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
-	auto hole4 = new Sphere(glm::vec2{50,400}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
-	auto hole5 = new Sphere(glm::vec2{350,400}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
-	auto hole6 = new Sphere(glm::vec2{ 700,400 }, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,255 });
+	auto hole1 = new Sphere(glm::vec2{50,50}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
+	auto hole2 = new Sphere(glm::vec2{ 400,50 }, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
+	auto hole3 = new Sphere(glm::vec2{750,50}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
+	auto hole4 = new Sphere(glm::vec2{50,400}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
+	auto hole5 = new Sphere(glm::vec2{400,400}, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
+	auto hole6 = new Sphere(glm::vec2{ 750,400 }, glm::vec2{ 0,0 }, 1000000000.f, holeRadius, Color{ 255,0,0,alpha });
 
 
 	holes.push_back(hole1);
@@ -50,34 +54,30 @@ PoolTable::PoolTable(PhysicsScene* ps) : scene{ ps }
 	
 
 };
-
+PoolTable::~PoolTable()
+{
+	UnloadTexture(texture);
+}
 void PoolTable::PositionBalls()
 {
+	//start pos
 	auto pos = glm::vec2{ 600,275 };
+	//how many lines of balls in the triangle
 	int amountOfLines = 5;
 	for (int x = 0; x < amountOfLines; ++x)
 	{
 		for (int y = 5 - x; y > 0; --y)
 		{
+			//reset pos
 			pos = glm::vec2{ 600,160 };
+			//find new pos
 			pos.x -= x * (ballRadius * 2);
 			pos.y += y * (ballRadius * 2) + (ballRadius * x);
-			auto ball = new Sphere(pos, glm::vec2{ 0,0 }, 10.f, ballRadius, Color{ 0,128,255,255 });
+			//instantiate ball
+			auto ball = new Sphere(pos, glm::vec2{ 0,0 }, 10.f, ballRadius, Color{ 255,0,0,255 });
 			scene->AddActor(ball);
 			balls.push_back(ball);
 		}
 	}
 }
 
-
-void PoolTable::HitHole(Rigidbody* object)
-{
-	if(object == whiteBall)
-	{
-		object->SetPosition(whitePos); //reset pos
-	}
-	else
-	{
-		object->SetPosition(glm::vec2{ 1000, 1000 }); //offscreen
-	}
-}

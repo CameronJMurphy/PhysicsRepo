@@ -7,6 +7,7 @@ Analytic::Analytic(glm::vec2 g, glm::vec2 initPos, glm::vec2 initVel, float b, f
 	initialVel {initVel}
 
 {
+	//create arc from begining to end
 	samples.reserve(20);
 	for (; b < e; b += ts)
 	{
@@ -16,6 +17,7 @@ Analytic::Analytic(glm::vec2 g, glm::vec2 initPos, glm::vec2 initVel, float b, f
 
 glm::vec2 Analytic::Analyze(float t)
 {
+	//return pos based on time
 	float x = initialPos.x + initialVel.x * t;
 	float y = initialPos.y + initialVel.y * t + gravity.y * 0.5f * t * t;
 	return glm::vec2{ x,y };
@@ -23,6 +25,7 @@ glm::vec2 Analytic::Analyze(float t)
 
 void Analytic::Draw()
 {
+	//draw line between points in sample
 	for (int i = 1; i < samples.size(); ++i)
 	{
 		auto beg = samples[i - 1];
@@ -36,6 +39,7 @@ Intergrator::Intergrator(Rigidbody* _rb, glm::vec2 grav, float b, float e, float
 	rb{ _rb },
 	timeStep{ts}
 {
+	//create arc from begining to end
 	samples.reserve(20);
 	for (; b < e; b += timeStep)
 	{
@@ -47,6 +51,7 @@ Intergrator::Intergrator(Rigidbody* _rb, glm::vec2 grav, float b, float e, float
 
 glm::vec2 Intergrator::Analyze()
 {
+	//return position but update physics aswell
 	glm::vec2 initPos = rb->GetPosition();
 	rb->FixedUpdate(gravity,timeStep);
 	return initPos;
@@ -54,6 +59,7 @@ glm::vec2 Intergrator::Analyze()
 
 void Intergrator::Draw()
 {
+	//draw line between points in sample
 	for (int i = 1; i < samples.size(); ++i)
 	{
 		auto beg = samples[i - 1];

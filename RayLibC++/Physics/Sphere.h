@@ -12,8 +12,6 @@ public:
 	float GetRadius() const { return radius; }
 	Color GetColour() const { return colour; }
 
-	// Inherited via Rigidbody
-	//virtual void FixedUpdate(const glm::vec2& gravity, float fixedTimeStep) override;
 	virtual void Draw() override;
 
 
